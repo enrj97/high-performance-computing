@@ -1,0 +1,92 @@
+graph_generation:               27.158764 s
+construction_time:              8.950277 s
+Running BFS 0
+Time for BFS 0 is 3.232650
+TEPS for BFS 0 is 3.32151e+08
+Validating BFS 0
+Validate time for BFS 0 is 11.267939
+Running BFS 1
+Time for BFS 1 is 3.259397
+TEPS for BFS 1 is 3.29425e+08
+Validating BFS 1
+Validate time for BFS 1 is 11.285813
+Running BFS 2
+Time for BFS 2 is 3.278593
+TEPS for BFS 2 is 3.27496e+08
+Validating BFS 2
+Validate time for BFS 2 is 11.300890
+Running BFS 3
+Time for BFS 3 is 3.292173
+TEPS for BFS 3 is 3.26145e+08
+Validating BFS 3
+Validate time for BFS 3 is 11.333822
+Running BFS 4
+Time for BFS 4 is 3.203224
+TEPS for BFS 4 is 3.35202e+08
+Validating BFS 4
+Validate time for BFS 4 is 11.253597
+Running BFS 5
+Time for BFS 5 is 3.253438
+TEPS for BFS 5 is 3.30028e+08
+Validating BFS 5
+Validate time for BFS 5 is 11.314235
+Running BFS 6
+Time for BFS 6 is 3.190141
+TEPS for BFS 6 is 3.36577e+08
+Validating BFS 6
+Validate time for BFS 6 is 11.260500
+Running BFS 7
+Time for BFS 7 is 3.217183
+TEPS for BFS 7 is 3.33748e+08
+Validating BFS 7
+Validate time for BFS 7 is 11.276122
+Running BFS 8
+Time for BFS 8 is 3.273848
+TEPS for BFS 8 is 3.27971e+08
+Validating BFS 8
+Validate time for BFS 8 is 11.289671
+Running BFS 9
+Time for BFS 9 is 3.248030
+TEPS for BFS 9 is 3.30578e+08
+Validating BFS 9
+Validate time for BFS 9 is 11.260455
+Running BFS 10
+Time for BFS 10 is 3.235264
+TEPS for BFS 10 is 3.31882e+08
+Validating BFS 10
+Validate time for BFS 10 is 11.279874
+Running BFS 11
+Time for BFS 11 is 3.225648
+TEPS for BFS 11 is 3.32872e+08
+Validating BFS 11
+Validate time for BFS 11 is 11.254084
+Running BFS 12
+Time for BFS 12 is 3.256959
+TEPS for BFS 12 is 3.29672e+08
+Validating BFS 12
+Validate time for BFS 12 is 11.286720
+Running BFS 13
+Time for BFS 13 is 3.233186
+TEPS for BFS 13 is 3.32096e+08
+Validating BFS 13
+Validate time for BFS 13 is 11.244597
+Running BFS 14
+Time for BFS 14 is 3.210311
+TEPS for BFS 14 is 3.34462e+08
+Validating BFS 14
+Validate time for BFS 14 is 11.244975
+Running BFS 15
+Time for BFS 15 is 3.223217
+TEPS for BFS 15 is 3.33123e+08
+Validating BFS 15
+Validate time for BFS 15 is 11.256959
+Running BFS 16
+Time for BFS 16 is 3.242152
+TEPS for BFS 16 is 3.31177e+08
+Validating BFS 16
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** STEP 1331434.0 ON hydra33 CANCELLED AT 2020-12-12T14:02:03 DUE TO TIME LIMIT ***
+slurmstepd: error: *** JOB 1331434 ON hydra33 CANCELLED AT 2020-12-12T14:02:03 DUE TO TIME LIMIT ***
+[hydra33:28851] Read -1, expected 32741, errno = 3
+[hydra33:28863] Read -1, expected 32741, errno = 3
+[hydra33:28865] Read -1, expected 32741, errno = 3
