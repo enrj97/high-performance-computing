@@ -1,0 +1,85 @@
+graph_generation:               27.061707 s
+construction_time:              11.156281 s
+Running SSSP 0
+Time for SSSP 0 is 7.928056
+TEPS for SSSP 0 is 1.35434e+08
+Validating SSSP 0
+Validate time for SSSP 0 is 7.192545
+Running SSSP 1
+Time for SSSP 1 is 8.008505
+TEPS for SSSP 1 is 1.34073e+08
+Validating SSSP 1
+Validate time for SSSP 1 is 7.177271
+Running SSSP 2
+Time for SSSP 2 is 8.124878
+TEPS for SSSP 2 is 1.32153e+08
+Validating SSSP 2
+Validate time for SSSP 2 is 7.169126
+Running SSSP 3
+Time for SSSP 3 is 8.014114
+TEPS for SSSP 3 is 1.33979e+08
+Validating SSSP 3
+Validate time for SSSP 3 is 7.174292
+Running SSSP 4
+Time for SSSP 4 is 8.897314
+TEPS for SSSP 4 is 1.2068e+08
+Validating SSSP 4
+Validate time for SSSP 4 is 7.182774
+Running SSSP 5
+Time for SSSP 5 is 8.747904
+TEPS for SSSP 5 is 1.22741e+08
+Validating SSSP 5
+Validate time for SSSP 5 is 7.171035
+Running SSSP 6
+Time for SSSP 6 is 7.739819
+TEPS for SSSP 6 is 1.38728e+08
+Validating SSSP 6
+Validate time for SSSP 6 is 7.170011
+Running SSSP 7
+Time for SSSP 7 is 8.780386
+TEPS for SSSP 7 is 1.22287e+08
+Validating SSSP 7
+Validate time for SSSP 7 is 7.180271
+Running SSSP 8
+Time for SSSP 8 is 8.206783
+TEPS for SSSP 8 is 1.30834e+08
+Validating SSSP 8
+Validate time for SSSP 8 is 7.177469
+Running SSSP 9
+Time for SSSP 9 is 7.732129
+TEPS for SSSP 9 is 1.38866e+08
+Validating SSSP 9
+Validate time for SSSP 9 is 7.173404
+Running SSSP 10
+Time for SSSP 10 is 7.743408
+TEPS for SSSP 10 is 1.38663e+08
+Validating SSSP 10
+Validate time for SSSP 10 is 7.172572
+Running SSSP 11
+Time for SSSP 11 is 8.444017
+TEPS for SSSP 11 is 1.27158e+08
+Validating SSSP 11
+Validate time for SSSP 11 is 7.174307
+Running SSSP 12
+Time for SSSP 12 is 8.356035
+TEPS for SSSP 12 is 1.28497e+08
+Validating SSSP 12
+Validate time for SSSP 12 is 7.172126
+Running SSSP 13
+Time for SSSP 13 is 8.460740
+TEPS for SSSP 13 is 1.26907e+08
+Validating SSSP 13
+Validate time for SSSP 13 is 7.174137
+Running SSSP 14
+Time for SSSP 14 is 7.706196
+TEPS for SSSP 14 is 1.39333e+08
+Validating SSSP 14
+Validate time for SSSP 14 is 7.183636
+Running SSSP 15
+Time for SSSP 15 is 9.200219
+TEPS for SSSP 15 is 1.16707e+08
+Validating SSSP 15
+slurmstepd: error: *** STEP 1331450.0 ON hydra01 CANCELLED AT 2020-12-14T01:45:08 DUE TO TIME LIMIT ***
+[hydra01:32521] Read -1, expected 32741, errno = 3
+[hydra01:32520] Read -1, expected 32741, errno = 3
+[hydra01:32524] Read -1, expected 32741, errno = 3

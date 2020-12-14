@@ -1,0 +1,147 @@
+graph_generation:               27.062646 s
+construction_time:              5.421133 s
+Running SSSP 0
+Time for SSSP 0 is 5.070388
+TEPS for SSSP 0 is 2.11764e+08
+Validating SSSP 0
+Validate time for SSSP 0 is 3.805467
+Running SSSP 1
+Time for SSSP 1 is 5.012436
+TEPS for SSSP 1 is 2.14213e+08
+Validating SSSP 1
+Validate time for SSSP 1 is 3.790786
+Running SSSP 2
+Time for SSSP 2 is 5.214789
+TEPS for SSSP 2 is 2.059e+08
+Validating SSSP 2
+Validate time for SSSP 2 is 3.791699
+Running SSSP 3
+Time for SSSP 3 is 5.182792
+TEPS for SSSP 3 is 2.07172e+08
+Validating SSSP 3
+Validate time for SSSP 3 is 3.792093
+Running SSSP 4
+Time for SSSP 4 is 5.857178
+TEPS for SSSP 4 is 1.83318e+08
+Validating SSSP 4
+Validate time for SSSP 4 is 3.794535
+Running SSSP 5
+Time for SSSP 5 is 5.631603
+TEPS for SSSP 5 is 1.90661e+08
+Validating SSSP 5
+Validate time for SSSP 5 is 3.794761
+Running SSSP 6
+Time for SSSP 6 is 4.979739
+TEPS for SSSP 6 is 2.15619e+08
+Validating SSSP 6
+Validate time for SSSP 6 is 3.792667
+Running SSSP 7
+Time for SSSP 7 is 5.762199
+TEPS for SSSP 7 is 1.8634e+08
+Validating SSSP 7
+Validate time for SSSP 7 is 3.797681
+Running SSSP 8
+Time for SSSP 8 is 5.483240
+TEPS for SSSP 8 is 1.9582e+08
+Validating SSSP 8
+Validate time for SSSP 8 is 3.787135
+Running SSSP 9
+Time for SSSP 9 is 5.008459
+TEPS for SSSP 9 is 2.14383e+08
+Validating SSSP 9
+Validate time for SSSP 9 is 3.770120
+Running SSSP 10
+Time for SSSP 10 is 4.961114
+TEPS for SSSP 10 is 2.16429e+08
+Validating SSSP 10
+Validate time for SSSP 10 is 3.769148
+Running SSSP 11
+Time for SSSP 11 is 5.606772
+TEPS for SSSP 11 is 1.91505e+08
+Validating SSSP 11
+Validate time for SSSP 11 is 3.772551
+Running SSSP 12
+Time for SSSP 12 is 5.454507
+TEPS for SSSP 12 is 1.96851e+08
+Validating SSSP 12
+Validate time for SSSP 12 is 3.767379
+Running SSSP 13
+Time for SSSP 13 is 5.492530
+TEPS for SSSP 13 is 1.95489e+08
+Validating SSSP 13
+Validate time for SSSP 13 is 3.774690
+Running SSSP 14
+Time for SSSP 14 is 5.012421
+TEPS for SSSP 14 is 2.14213e+08
+Validating SSSP 14
+Validate time for SSSP 14 is 3.768408
+Running SSSP 15
+Time for SSSP 15 is 6.112820
+TEPS for SSSP 15 is 1.75652e+08
+Validating SSSP 15
+Validate time for SSSP 15 is 3.774814
+Running SSSP 16
+Time for SSSP 16 is 5.165952
+TEPS for SSSP 16 is 2.07847e+08
+Validating SSSP 16
+Validate time for SSSP 16 is 3.772143
+Running SSSP 17
+Time for SSSP 17 is 4.979766
+TEPS for SSSP 17 is 2.15618e+08
+Validating SSSP 17
+Validate time for SSSP 17 is 3.767735
+Running SSSP 18
+Time for SSSP 18 is 5.726642
+TEPS for SSSP 18 is 1.87497e+08
+Validating SSSP 18
+Validate time for SSSP 18 is 3.771382
+Running SSSP 19
+Time for SSSP 19 is 5.360169
+TEPS for SSSP 19 is 2.00316e+08
+Validating SSSP 19
+Validate time for SSSP 19 is 3.794278
+Running SSSP 20
+Time for SSSP 20 is 5.612062
+TEPS for SSSP 20 is 1.91325e+08
+Validating SSSP 20
+Validate time for SSSP 20 is 3.793229
+Running SSSP 21
+Time for SSSP 21 is 5.096228
+TEPS for SSSP 21 is 2.1069e+08
+Validating SSSP 21
+Validate time for SSSP 21 is 3.798490
+Running SSSP 22
+Time for SSSP 22 is 6.674955
+TEPS for SSSP 22 is 1.60859e+08
+Validating SSSP 22
+Validate time for SSSP 22 is 3.785691
+Running SSSP 23
+Time for SSSP 23 is 4.248727
+TEPS for SSSP 23 is 2.52717e+08
+Validating SSSP 23
+Validate time for SSSP 23 is 3.772230
+Running SSSP 24
+Time for SSSP 24 is 5.704303
+TEPS for SSSP 24 is 1.88231e+08
+Validating SSSP 24
+Validate time for SSSP 24 is 3.769337
+Running SSSP 25
+Time for SSSP 25 is 5.828292
+TEPS for SSSP 25 is 1.84227e+08
+Validating SSSP 25
+Validate time for SSSP 25 is 3.765499
+Running SSSP 26
+Time for SSSP 26 is 6.033624
+TEPS for SSSP 26 is 1.77957e+08
+Validating SSSP 26
+Validate time for SSSP 26 is 3.791787
+Running SSSP 27
+Time for SSSP 27 is 5.778794
+TEPS for SSSP 27 is 1.85805e+08
+Validating SSSP 27
+Validate time for SSSP 27 is 3.798614
+Running SSSP 28
+Time for SSSP 28 is 5.703055
+TEPS for SSSP 28 is 1.88272e+08
+Validating SSSP 28
+slurmstepd: error: *** STEP 1331453.0 ON hydra01 CANCELLED AT 2020-12-14T01:58:08 DUE TO TIME LIMIT ***
