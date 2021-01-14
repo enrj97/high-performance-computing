@@ -46,14 +46,6 @@ typedef struct visitmsg {
 
 visitmsg message;
 
-void update(int64_t glob, int from){
-	if (!TEST_VISITEDLOC(glob)) {
-		SET_VISITEDLOC(glob);
-		q2[q2c++] = glob;
-		pred_glob[glob] = VERTEX_TO_GLOBAL(from, from);
-	}
-}
-
 //user should provide this function which would be called once to do kernel 1: graph convert
 void make_graph_data_structure(const tuple_graph* const tg) {
 	//graph conversion, can be changed by user by replacing oned_csr.{c,h} with new graph format 
@@ -92,39 +84,6 @@ void make_graph_data_structure(const tuple_graph* const tg) {
 	//user code to allocate other buffers for bfs
 }
 
-int check = 0;
-int active_recv  = 0;
-int done;
-
-#define CHECK_REQS \
-  do{ \
-  	while (active_recv) { \
-  		int flag; \
-    	MPI_Status st; \
-    	MPI_Test(&recv_req, &flag, &st); \
-      	if (flag) { \
-      		active_recv = 0; \
-      		int count; \
-        	MPI_Get_count(&st, mpi_message_type, &count); \
-        	if(count==0){\
-				done++;\
-        	}\
-        	else{\
-		 		if (!TEST_VISITEDLOC(message.vloc)) { \
-					SET_VISITEDLOC(message.vloc); \
-					q2[q2c++] = message.vloc; \
-					pred_glob[message.vloc] = VERTEX_TO_GLOBAL(message.ra, message.vfrom); \
-				}\
-			} \
-			if (done < size) { \
-		      MPI_Irecv(&message, 1, mpi_message_type, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &recv_req); \
-		      active_recv = 1; \
-		    } \
-		} else break; \
-	}\
-    if(check) {MPI_Status st;int flag; MPI_Test(&send_req, &flag, &st); if(flag) check=0;} \
-  }while(0)
-
 //user should provide this function which would be called several times to do kernel 2: breadth first search
 //pred[] should be root for root, -1 for unrechable vertices
 //prior to calling run_bfs pred is set to -1 by calling clean_pred
@@ -137,8 +96,6 @@ void run_bfs(int64_t root, int64_t* pred) {
 
 	//user code to do bfs
 	
-	//get my rank, then we have two queue (the current one and the next level one)
-
 	CLEAN_VISITED();
 
 	qc=0; sum=1; q2c=0; //qc and q2c tbd (?)
@@ -150,54 +107,14 @@ void run_bfs(int64_t root, int64_t* pred) {
 		qc=1;									//qc cardinality of q1 
 	} 
 
-	while(global_sum){
-		done = 1;
-		if (done < size){
-			MPI_Irecv(&message, 1, mpi_message_type, MPI_ANY_SOURCE, tag, MPI_COMM_WORLD, &recv_req);
-			active_recv = 1;
-		}
-		//for each vertex in the queue
-		for(i=0;i<qc;i++){			
-			//first I check the requests										
-			CHECK_REQS;
-			//for each neighbors in the vertex, based on the graph implementation 
-			for(j=rowstarts[q1[i]]; j<rowstarts[q1[i]+1]; j++){		
-				if(VERTEX_OWNER(COLUMN(j)) == rank){
-					if (!TEST_VISITED(COLUMN(j))) {
-			            SET_VISITED(COLUMN(j));
-			            pred[VERTEX_LOCAL(COLUMN(j))] = VERTEX_TO_GLOBAL(rank, q1[i]);
-			            q2[q2c++] = VERTEX_LOCAL(COLUMN(j));
-          			}
-				}
-				else{
-					visitmsg m = {VERTEX_LOCAL(COLUMN(j)), q1[i], rank};
-					MPI_Isend(&m, 1, mpi_message_type, VERTEX_OWNER(COLUMN(j)), tag, MPI_COMM_WORLD, &send_req);
-					check = 1;
-					while (check) CHECK_REQS;
-				}
-				//send_visit(COLUMN(j),q1[i]);						
-      		}
-      	}
-      	//empty message to all the processors, I am done.
-      	visitmsg m;	
-      	for(int ra = 0; ra < size; ra++){
-      		if(ra != rank){
-	      		MPI_Isend(&m, 0, mpi_message_type, ra, tag, MPI_COMM_WORLD, &send_req);
-	      		check = 1;
-      		}
-      		
-      	}
-      	
-      	while (done < size) CHECK_REQS;
+	while(1){
+		break;
 		qc=q2c;int *tmp=q1;q1=q2;q2=tmp;
 		sum=qc;
 		global_sum = 0;
-
 		MPI_Allreduce(&sum, &global_sum, 1, MPI_LONG_LONG, MPI_SUM, MPI_COMM_WORLD);
-		
 		nvisited+=sum;
 		q2c=0;
-		//synchronize
 	}
 
 }
