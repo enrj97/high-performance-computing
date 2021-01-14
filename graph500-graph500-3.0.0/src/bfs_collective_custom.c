@@ -84,6 +84,42 @@ void make_graph_data_structure(const tuple_graph* const tg) {
 	//user code to allocate other buffers for bfs
 }
 
+int *send_counts; // number of neighbors that will be sent to each proc
+//mpi_message_type* send_buf; // contains the data that need to be sent to each proc
+int *send_disps; // start index of the data that has to be sent to each proc
+visitmsg* send_buf;
+int *recv_counts; // number of neighbors to be received from each proc
+//mpi_message_type* recv_buf; // to store the data to be received from each proc
+int *recv_disps; // start index of storage for data received from each proc
+
+long send_size;
+long recv_size; 
+
+void initialize_list(){
+
+	// count the total number of vertices that need to be sent to each proc
+    // store the number of vertices that need to be sent to each proc
+    send_counts = (int *)malloc(sizeof(int) * size);
+    send_disps = (int *)malloc(sizeof(int) * size);
+
+    // inform each porcessor, how many vertices to expect in the next communication
+    recv_counts = (int *)malloc(sizeof(int) * size);
+    recv_disps = (int *)malloc(sizeof(int) * size);
+
+	for(int i=0; i<size; ++i){
+		recv_counts[i] = 0;
+    	recv_disps[i] = 0;
+    	send_counts[i] = 0;
+    	send_disps[i] = 0;
+    }
+
+    recv_size = 0;
+    send_size = 0;
+
+    return;
+} 
+
+
 //user should provide this function which would be called several times to do kernel 2: breadth first search
 //pred[] should be root for root, -1 for unrechable vertices
 //prior to calling run_bfs pred is set to -1 by calling clean_pred
@@ -94,7 +130,6 @@ void run_bfs(int64_t root, int64_t* pred) {
 	pred_glob=pred;
 	int owner;
 
-	//user code to do bfs
 	
 	CLEAN_VISITED();
 
@@ -108,11 +143,44 @@ void run_bfs(int64_t root, int64_t* pred) {
 	} 
 
 	while(1){
+		MPI_Barrier(MPI_COMM_WORLD);
+		
+		initialize_list(); //init lists
+
+		for(i=0;i<qc;i++)
+			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
+				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
+				send_size++;
+      	}
+
+      	//create a buff of send_size so that we can fill it with the messages
+        send_buf = (visitmsg*)malloc(sizeof(visitmsg) * send_size);
+
+        initialize_list(); //init lists
+
+		for(i=0;i<qc;i++)
+			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
+				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
+				send_size++;
+      	}
+
+
+        //what we will expect to receive from each processors?
+      	MPI_Alltoall(send_counts, 1, MPI_INT, recv_counts, 1, MPI_INT, MPI_COMM_WORLD);
+      	
+      	printf("Rank: %d dim: %ld\n", rank, send_size);
+      	for(i=0; i<size; ++i) printf("%d ", recv_counts[i]);
+      	printf("\n");
+
+      	MPI_Barrier(MPI_COMM_WORLD);
+      	sleep(1);
 		break;
+
 		qc=q2c;int *tmp=q1;q1=q2;q2=tmp;
 		sum=qc;
 		global_sum = 0;
 		MPI_Allreduce(&sum, &global_sum, 1, MPI_LONG_LONG, MPI_SUM, MPI_COMM_WORLD);
+
 		nvisited+=sum;
 		q2c=0;
 	}
