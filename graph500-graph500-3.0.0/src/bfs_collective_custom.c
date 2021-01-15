@@ -84,39 +84,40 @@ void make_graph_data_structure(const tuple_graph* const tg) {
 	//user code to allocate other buffers for bfs
 }
 
-int *send_counts; // number of neighbors that will be sent to each proc
-//mpi_message_type* send_buf; // contains the data that need to be sent to each proc
-int *send_disps; // start index of the data that has to be sent to each proc
-visitmsg* send_buf;
-int *recv_counts; // number of neighbors to be received from each proc
-//mpi_message_type* recv_buf; // to store the data to be received from each proc
-int *recv_disps; // start index of storage for data received from each proc
-
+int *send_counts;
+int *send_counts_2; 
+int *send_disps; 
+struct visitmsg* send_buf;
+int *recv_counts; 
+int *recv_disps; 
+struct visitmsg* recv_buf;
 long send_size;
 long recv_size; 
 
-void initialize_list(){
+void free_memory(){
+	free(recv_buf);
+	free(send_buf);
+	free(send_disps);
+	free(recv_disps);
+	free(send_counts_2);
+}
 
+void initialize_list(){
 	// count the total number of vertices that need to be sent to each proc
     // store the number of vertices that need to be sent to each proc
     send_counts = (int *)malloc(sizeof(int) * size);
     send_disps = (int *)malloc(sizeof(int) * size);
-
     // inform each porcessor, how many vertices to expect in the next communication
     recv_counts = (int *)malloc(sizeof(int) * size);
     recv_disps = (int *)malloc(sizeof(int) * size);
-
 	for(int i=0; i<size; ++i){
 		recv_counts[i] = 0;
     	recv_disps[i] = 0;
     	send_counts[i] = 0;
     	send_disps[i] = 0;
     }
-
     recv_size = 0;
     send_size = 0;
-
-    return;
 } 
 
 
@@ -143,43 +144,86 @@ void run_bfs(int64_t root, int64_t* pred) {
 	} 
 
 	while(1){
-		MPI_Barrier(MPI_COMM_WORLD);
-		
+
 		initialize_list(); //init lists
 
+		send_counts_2 = (int *)malloc(sizeof(int) * size);
+		
+		for(i=0; i<size; ++i){
+    		send_counts_2[i] = 0;
+    	}
+		
 		for(i=0;i<qc;i++)
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
 				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
+				send_counts_2[VERTEX_OWNER(COLUMN(j))]++; //replicate the results
 				send_size++;
       	}
 
       	//create a buff of send_size so that we can fill it with the messages
-        send_buf = (visitmsg*)malloc(sizeof(visitmsg) * send_size);
+        send_buf = (struct visitmsg*)calloc(send_size, sizeof(struct visitmsg));
 
         initialize_list(); //init lists
 
 		for(i=0;i<qc;i++)
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
-				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
+				int offset = 0; int owner = VERTEX_OWNER(COLUMN(j));
+				for(int l=0; l<owner; l++){
+					offset+=send_counts_2[l]; //calculate the offset in which we set the message
+				}
+				visitmsg m = {VERTEX_LOCAL(COLUMN(j)), q1[i], rank};
+				send_buf[(send_counts[owner]+offset)] = m;
+				send_counts[owner]++; //fill the send count size;
 				send_size++;
       	}
 
+      	for(i=0;i<size;++i){
+      		if(i==0){
+            	send_disps[i] = 0;
+      		}
+            else{
+            	send_disps[i] = send_disps[i-1]+send_counts[i-1];
+            }
+        }
 
         //what we will expect to receive from each processors?
       	MPI_Alltoall(send_counts, 1, MPI_INT, recv_counts, 1, MPI_INT, MPI_COMM_WORLD);
-      	
-      	printf("Rank: %d dim: %ld\n", rank, send_size);
-      	for(i=0; i<size; ++i) printf("%d ", recv_counts[i]);
-      	printf("\n");
+
+        for(i=0;i<size;++i){
+            if(i==0){
+            	recv_disps[i] = 0;
+      		}
+            else{
+            	recv_disps[i] = recv_disps[i-1]+recv_counts[i-1];
+            }
+            recv_size+=recv_counts[i];
+        }
+        
+        recv_buf = (struct visitmsg*)calloc(recv_size, sizeof(struct visitmsg));
+		
+        MPI_Alltoallv(send_buf, send_counts, send_disps, mpi_message_type, recv_buf, recv_counts, recv_disps, mpi_message_type, MPI_COMM_WORLD);
+
+      	//now we face with local vertex only, thus ...
+      	for(i=0; i<recv_size; ++i){
+  			if (!TEST_VISITEDLOC(recv_buf[i].vloc)) { 
+					SET_VISITEDLOC(recv_buf[i].vloc); 
+					q2[q2c++] = recv_buf[i].vloc; 
+					pred_glob[recv_buf[i].vloc] = VERTEX_TO_GLOBAL(recv_buf[i].ra, recv_buf[i].vfrom); 
+				}
+      	}
+
+      	free_memory();
 
       	MPI_Barrier(MPI_COMM_WORLD);
-      	sleep(1);
-		break;
 
 		qc=q2c;int *tmp=q1;q1=q2;q2=tmp;
 		sum=qc;
 		global_sum = 0;
 		MPI_Allreduce(&sum, &global_sum, 1, MPI_LONG_LONG, MPI_SUM, MPI_COMM_WORLD);
+
+		if(global_sum==0){
+			break;
+		}
 
 		nvisited+=sum;
 		q2c=0;
