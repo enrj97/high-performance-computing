@@ -85,10 +85,10 @@ void make_graph_data_structure(const tuple_graph* const tg) {
 }
 
 int *send_counts;
-int *send_counts_2; 
+int *send_counts_2;
 int *send_disps; 
-struct visitmsg* send_buf;
-int *recv_counts; 
+struct visitmsg* send_buf; 
+int *recv_counts; 			
 int *recv_disps; 
 struct visitmsg* recv_buf;
 long send_size;
@@ -153,11 +153,12 @@ void run_bfs(int64_t root, int64_t* pred) {
     		send_counts_2[i] = 0;
     	}
 		
-		for(i=0;i<qc;i++)
+		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
 				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
 				send_counts_2[VERTEX_OWNER(COLUMN(j))]++; //replicate the results
 				send_size++;
+			}
       	}
 
       	//create a buff of send_size so that we can fill it with the messages
@@ -165,7 +166,7 @@ void run_bfs(int64_t root, int64_t* pred) {
 
         initialize_list(); //init lists
 
-		for(i=0;i<qc;i++)
+		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
 				int offset = 0; int owner = VERTEX_OWNER(COLUMN(j));
 				for(int l=0; l<owner; l++){
@@ -175,6 +176,7 @@ void run_bfs(int64_t root, int64_t* pred) {
 				send_buf[(send_counts[owner]+offset)] = m;
 				send_counts[owner]++; //fill the send count size;
 				send_size++;
+			}
       	}
 
       	for(i=0;i<size;++i){
