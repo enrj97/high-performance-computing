@@ -84,50 +84,18 @@ void make_graph_data_structure(const tuple_graph* const tg) {
 	//user code to allocate other buffers for bfs
 }
 
-int *send_counts;
-int *send_counts_2;
-int *send_disps;
-struct visitmsg* send_buf; 
-int *recv_counts;
-int *recv_disps;
+struct visitmsg* send_buf;
 struct visitmsg* recv_buf;
-long send_size;
-long recv_size; 
+long send_size = 0;
+long recv_size = 0;
+int alloc_size;
 
-void free_memory(){
-	free(recv_buf);
-	free(send_buf);
-	free(send_disps);
-	free(recv_disps);
-	free(send_counts);
-	free(send_counts_2);
-}
-
-void initialize_list(){
-	// count the total number of vertices that need to be sent to each proc
-    // store the number of vertices that need to be sent to each proc
-    send_counts = (int *)malloc(sizeof(int) * size);
-    send_disps = (int *)malloc(sizeof(int) * size);
-    // inform each porcessor, how many vertices to expect in the next communication
-    recv_counts = (int *)malloc(sizeof(int) * size);
-    recv_disps = (int *)malloc(sizeof(int) * size);
-	for(int i=0; i<size; ++i){
-		recv_counts[i] = 0;
-    	recv_disps[i] = 0;
-    	send_counts[i] = 0;
-    	send_disps[i] = 0;
-    }
-    recv_size = 0;
-    send_size = 0;
-}
-
-void set_zero() {
-    memset(recv_counts, 0, size * sizeof(int));
-    memset(recv_disps, 0, size * sizeof(int));
-    memset(send_counts, 0, size * sizeof(int));
-    memset(send_disps, 0, size * sizeof(int));
-    recv_size = 0;
-//    send_size = 0;
+inline void set_zero(int *send_counts_p, int *send_counts_2_p, int *send_disps_p, int *recv_counts_p, int *recv_disps_p) {
+    memset(recv_counts_p, 0, alloc_size);
+    memset(recv_disps_p, 0, alloc_size);
+    memset(send_counts_p, 0, alloc_size);
+    memset(send_disps_p, 0, alloc_size);
+    memset(send_counts_2_p, 0, alloc_size);
 }
 
 
@@ -140,7 +108,15 @@ void run_bfs(int64_t root, int64_t* pred) {
 	unsigned int i,j,k,lvl=1;
 	pred_glob=pred;
 	int owner;
+    alloc_size = sizeof(int) * size;
+    int send_counts[alloc_size];
+    int send_disps[alloc_size];
+    // inform each porcessor, how many vertices to expect in the next communication
+    int recv_counts[alloc_size];
+    int recv_disps[alloc_size];
+    int send_counts_2[alloc_size];
 
+    set_zero(send_counts, send_counts_2, send_disps, recv_counts, recv_disps);
 	
 	CLEAN_VISITED();
 
@@ -152,31 +128,18 @@ void run_bfs(int64_t root, int64_t* pred) {
 		q1[0]=VERTEX_LOCAL(root);				//enqueue root (we have to send message to the neighbors)
 		qc=1;									//qc cardinality of q1 
 	}
-
-    initialize_list(); //init lists
     
 	while(1){
 
-        send_counts_2 = (int *)malloc(sizeof(int) * size);
-        memset(send_counts_2, 0, size * sizeof(int));
-        send_size = 0;
-		
-//		for(i=0; i<size; ++i){
-//    		send_counts_2[i] = 0;
-//    	}
-		
 		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
-				send_counts_2[VERTEX_OWNER(COLUMN(j))]++; //replicate the results
+				send_counts_2[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
 			}
             send_size += rowstarts[q1[i]+1] - rowstarts[q1[i]];
       	}
 
       	//create a buff of send_size so that we can fill it with the messages
         send_buf = (struct visitmsg*)calloc(send_size, sizeof(struct visitmsg));
-
-//        set_zero(); //init lists
-        initialize_list();
 
 		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
@@ -187,31 +150,20 @@ void run_bfs(int64_t root, int64_t* pred) {
 				visitmsg m = {VERTEX_LOCAL(COLUMN(j)), q1[i], rank};
 				send_buf[(send_counts[owner]+offset)] = m;
 				send_counts[owner]++; //fill the send count size;
-//				send_size++;
 			}
 
       	}
 
-      	for(i=0;i<size;++i){
-      		if(i==0){
-            	send_disps[i] = 0;
-      		}
-            else{
-            	send_disps[i] = send_disps[i-1]+send_counts[i-1];
-            }
-        }
-
         //what we will expect to receive from each processors?
       	MPI_Alltoall(send_counts, 1, MPI_INT, recv_counts, 1, MPI_INT, MPI_COMM_WORLD);
 
-        for(i=0;i<size;++i){
-            if(i==0){
-            	recv_disps[i] = 0;
-      		}
-            else{
-            	recv_disps[i] = recv_disps[i-1]+recv_counts[i-1];
-            }
-            recv_size+=recv_counts[i];
+        recv_disps[0] = 0;
+        send_disps[0] = 0;
+        recv_size += recv_counts[0];
+        for(i=1;i<size;++i){
+            recv_disps[i] = recv_disps[i-1]+recv_counts[i-1];
+            send_disps[i] = send_disps[i-1]+send_counts[i-1];
+            recv_size += recv_counts[i];
         }
         
         recv_buf = (struct visitmsg*)calloc(recv_size, sizeof(struct visitmsg));
@@ -220,16 +172,17 @@ void run_bfs(int64_t root, int64_t* pred) {
 
       	//now we face with local vertex only, thus ...
       	for(i=0; i<recv_size; ++i){
-  			if (!TEST_VISITEDLOC(recv_buf[i].vloc)) { 
-					SET_VISITEDLOC(recv_buf[i].vloc); 
-					q2[q2c++] = recv_buf[i].vloc; 
-					pred_glob[recv_buf[i].vloc] = VERTEX_TO_GLOBAL(recv_buf[i].ra, recv_buf[i].vfrom); 
+      	    int vloc = recv_buf[i].vloc;
+  			if (!TEST_VISITEDLOC(vloc)) {
+					SET_VISITEDLOC(vloc);
+					q2[q2c++] = vloc;
+					pred_glob[vloc] = VERTEX_TO_GLOBAL(recv_buf[i].ra, recv_buf[i].vfrom);
 				}
       	}
 
-      	free_memory();
-//        free(recv_buf);
-//        free(send_buf);
+        free(recv_buf);
+        free(send_buf);
+        recv_size = 0;
 
       	MPI_Barrier(MPI_COMM_WORLD);
 
@@ -242,6 +195,8 @@ void run_bfs(int64_t root, int64_t* pred) {
 			break;
 		}
 
+        set_zero(send_counts, send_counts_2, send_disps, recv_counts, recv_disps);
+        send_size = 0;
 		nvisited+=sum;
 		q2c=0;
 	}
