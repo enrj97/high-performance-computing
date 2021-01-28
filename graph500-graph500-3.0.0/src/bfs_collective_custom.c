@@ -86,10 +86,10 @@ void make_graph_data_structure(const tuple_graph* const tg) {
 
 int *send_counts;
 int *send_counts_2;
-int *send_disps; 
+int *send_disps;
 struct visitmsg* send_buf; 
-int *recv_counts; 			
-int *recv_disps; 
+int *recv_counts;
+int *recv_disps;
 struct visitmsg* recv_buf;
 long send_size;
 long recv_size; 
@@ -99,6 +99,7 @@ void free_memory(){
 	free(send_buf);
 	free(send_disps);
 	free(recv_disps);
+	free(send_counts);
 	free(send_counts_2);
 }
 
@@ -118,7 +119,16 @@ void initialize_list(){
     }
     recv_size = 0;
     send_size = 0;
-} 
+}
+
+void set_zero() {
+    memset(recv_counts, 0, size * sizeof(int));
+    memset(recv_disps, 0, size * sizeof(int));
+    memset(send_counts, 0, size * sizeof(int));
+    memset(send_disps, 0, size * sizeof(int));
+    recv_size = 0;
+//    send_size = 0;
+}
 
 
 //user should provide this function which would be called several times to do kernel 2: breadth first search
@@ -141,30 +151,32 @@ void run_bfs(int64_t root, int64_t* pred) {
 		SET_VISITED(root);			
 		q1[0]=VERTEX_LOCAL(root);				//enqueue root (we have to send message to the neighbors)
 		qc=1;									//qc cardinality of q1 
-	} 
+	}
 
+    initialize_list(); //init lists
+    
 	while(1){
 
-		initialize_list(); //init lists
-
-		send_counts_2 = (int *)malloc(sizeof(int) * size);
+        send_counts_2 = (int *)malloc(sizeof(int) * size);
+        memset(send_counts_2, 0, size * sizeof(int));
+        send_size = 0;
 		
-		for(i=0; i<size; ++i){
-    		send_counts_2[i] = 0;
-    	}
+//		for(i=0; i<size; ++i){
+//    		send_counts_2[i] = 0;
+//    	}
 		
 		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
-				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
 				send_counts_2[VERTEX_OWNER(COLUMN(j))]++; //replicate the results
-				send_size++;
 			}
+            send_size += rowstarts[q1[i]+1] - rowstarts[q1[i]];
       	}
 
       	//create a buff of send_size so that we can fill it with the messages
         send_buf = (struct visitmsg*)calloc(send_size, sizeof(struct visitmsg));
 
-        initialize_list(); //init lists
+//        set_zero(); //init lists
+        initialize_list();
 
 		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
@@ -175,8 +187,9 @@ void run_bfs(int64_t root, int64_t* pred) {
 				visitmsg m = {VERTEX_LOCAL(COLUMN(j)), q1[i], rank};
 				send_buf[(send_counts[owner]+offset)] = m;
 				send_counts[owner]++; //fill the send count size;
-				send_size++;
+//				send_size++;
 			}
+
       	}
 
       	for(i=0;i<size;++i){
@@ -215,6 +228,8 @@ void run_bfs(int64_t root, int64_t* pred) {
       	}
 
       	free_memory();
+//        free(recv_buf);
+//        free(send_buf);
 
       	MPI_Barrier(MPI_COMM_WORLD);
 
@@ -230,7 +245,7 @@ void run_bfs(int64_t root, int64_t* pred) {
 		nvisited+=sum;
 		q2c=0;
 	}
-
+//    free_memory();
 }
 
 //we need edge count to calculate teps. Validation will check if this count is correct
