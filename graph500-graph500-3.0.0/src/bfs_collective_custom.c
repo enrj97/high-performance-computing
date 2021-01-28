@@ -155,7 +155,7 @@ void run_bfs(int64_t root, int64_t* pred) {
 		
 		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
-				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
+//				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
 				send_counts_2[VERTEX_OWNER(COLUMN(j))]++; //replicate the results
 				send_size++;
 			}
@@ -164,7 +164,7 @@ void run_bfs(int64_t root, int64_t* pred) {
       	//create a buff of send_size so that we can fill it with the messages
         send_buf = (struct visitmsg*)calloc(send_size, sizeof(struct visitmsg));
 
-        initialize_list(); //init lists
+
 
 		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
@@ -215,7 +215,8 @@ void run_bfs(int64_t root, int64_t* pred) {
       	}
 
       	free_memory();
-
+        initialize_list(); //init lists
+        
       	MPI_Barrier(MPI_COMM_WORLD);
 
 		qc=q2c;int *tmp=q1;q1=q2;q2=tmp;
