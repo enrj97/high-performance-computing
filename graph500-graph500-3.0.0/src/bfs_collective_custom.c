@@ -141,11 +141,11 @@ void run_bfs(int64_t root, int64_t* pred) {
 		SET_VISITED(root);			
 		q1[0]=VERTEX_LOCAL(root);				//enqueue root (we have to send message to the neighbors)
 		qc=1;									//qc cardinality of q1 
-	} 
+	}
+
+    initialize_list(); //init lists
 
 	while(1){
-
-		initialize_list(); //init lists
 
 		send_counts_2 = (int *)malloc(sizeof(int) * size);
 		
