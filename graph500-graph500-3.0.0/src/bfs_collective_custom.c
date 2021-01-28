@@ -98,6 +98,7 @@ void free_memory(){
 	free(recv_buf);
 	free(send_buf);
 	free(send_disps);
+	free(recv_counts);
 	free(recv_disps);
 	free(send_counts_2);
 }
@@ -215,8 +216,8 @@ void run_bfs(int64_t root, int64_t* pred) {
       	}
 
       	free_memory();
-        initialize_list(); //init lists
-        
+
+
       	MPI_Barrier(MPI_COMM_WORLD);
 
 		qc=q2c;int *tmp=q1;q1=q2;q2=tmp;
@@ -227,11 +228,11 @@ void run_bfs(int64_t root, int64_t* pred) {
 		if(global_sum==0){
 			break;
 		}
-
+        initialize_list(); //init lists
 		nvisited+=sum;
 		q2c=0;
 	}
-
+//    free_memory();
 }
 
 //we need edge count to calculate teps. Validation will check if this count is correct
