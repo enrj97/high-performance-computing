@@ -1,0 +1,377 @@
+graph_generation:               1.181469 s
+construction_time:              0.275593 s
+Running SSSP 0
+Time for SSSP 0 is 0.012659
+TEPS for SSSP 0 is 1.65608e+08
+Validating SSSP 0
+Validate time for SSSP 0 is 0.004074
+Running SSSP 1
+Time for SSSP 1 is 0.012433
+TEPS for SSSP 1 is 1.68627e+08
+Validating SSSP 1
+Validate time for SSSP 1 is 0.003928
+Running SSSP 2
+Time for SSSP 2 is 0.011366
+TEPS for SSSP 2 is 1.84449e+08
+Validating SSSP 2
+Validate time for SSSP 2 is 0.003853
+Running SSSP 3
+Time for SSSP 3 is 0.012134
+TEPS for SSSP 3 is 1.72776e+08
+Validating SSSP 3
+Validate time for SSSP 3 is 0.003782
+Running SSSP 4
+Time for SSSP 4 is 0.011360
+TEPS for SSSP 4 is 1.84556e+08
+Validating SSSP 4
+Validate time for SSSP 4 is 0.003860
+Running SSSP 5
+Time for SSSP 5 is 0.012561
+TEPS for SSSP 5 is 1.66907e+08
+Validating SSSP 5
+Validate time for SSSP 5 is 0.003782
+Running SSSP 6
+Time for SSSP 6 is 0.011039
+TEPS for SSSP 6 is 1.89923e+08
+Validating SSSP 6
+Validate time for SSSP 6 is 0.003804
+Running SSSP 7
+Time for SSSP 7 is 0.011731
+TEPS for SSSP 7 is 1.78718e+08
+Validating SSSP 7
+Validate time for SSSP 7 is 0.003788
+Running SSSP 8
+Time for SSSP 8 is 0.011026
+TEPS for SSSP 8 is 1.9014e+08
+Validating SSSP 8
+Validate time for SSSP 8 is 0.003778
+Running SSSP 9
+Time for SSSP 9 is 0.011496
+TEPS for SSSP 9 is 1.82373e+08
+Validating SSSP 9
+Validate time for SSSP 9 is 0.003813
+Running SSSP 10
+Time for SSSP 10 is 0.010964
+TEPS for SSSP 10 is 1.91216e+08
+Validating SSSP 10
+Validate time for SSSP 10 is 0.003788
+Running SSSP 11
+Time for SSSP 11 is 0.011229
+TEPS for SSSP 11 is 1.86699e+08
+Validating SSSP 11
+Validate time for SSSP 11 is 0.003834
+Running SSSP 12
+Time for SSSP 12 is 0.011129
+TEPS for SSSP 12 is 1.8838e+08
+Validating SSSP 12
+Validate time for SSSP 12 is 0.003756
+Running SSSP 13
+Time for SSSP 13 is 0.012031
+TEPS for SSSP 13 is 1.74259e+08
+Validating SSSP 13
+Validate time for SSSP 13 is 0.003818
+Running SSSP 14
+Time for SSSP 14 is 0.011445
+TEPS for SSSP 14 is 1.83185e+08
+Validating SSSP 14
+Validate time for SSSP 14 is 0.003796
+Running SSSP 15
+Time for SSSP 15 is 0.011127
+TEPS for SSSP 15 is 1.88409e+08
+Validating SSSP 15
+Validate time for SSSP 15 is 0.003797
+Running SSSP 16
+Time for SSSP 16 is 0.011030
+TEPS for SSSP 16 is 1.90065e+08
+Validating SSSP 16
+Validate time for SSSP 16 is 0.003776
+Running SSSP 17
+Time for SSSP 17 is 0.011114
+TEPS for SSSP 17 is 1.8864e+08
+Validating SSSP 17
+Validate time for SSSP 17 is 0.003782
+Running SSSP 18
+Time for SSSP 18 is 0.012403
+TEPS for SSSP 18 is 1.69027e+08
+Validating SSSP 18
+Validate time for SSSP 18 is 0.003821
+Running SSSP 19
+Time for SSSP 19 is 0.011587
+TEPS for SSSP 19 is 1.80942e+08
+Validating SSSP 19
+Validate time for SSSP 19 is 0.003780
+Running SSSP 20
+Time for SSSP 20 is 0.011203
+TEPS for SSSP 20 is 1.87145e+08
+Validating SSSP 20
+Validate time for SSSP 20 is 0.003769
+Running SSSP 21
+Time for SSSP 21 is 0.012244
+TEPS for SSSP 21 is 1.71222e+08
+Validating SSSP 21
+Validate time for SSSP 21 is 0.003816
+Running SSSP 22
+Time for SSSP 22 is 0.010555
+TEPS for SSSP 22 is 1.9863e+08
+Validating SSSP 22
+Validate time for SSSP 22 is 0.003782
+Running SSSP 23
+Time for SSSP 23 is 0.010410
+TEPS for SSSP 23 is 2.01386e+08
+Validating SSSP 23
+Validate time for SSSP 23 is 0.003766
+Running SSSP 24
+Time for SSSP 24 is 0.011934
+TEPS for SSSP 24 is 1.75677e+08
+Validating SSSP 24
+Validate time for SSSP 24 is 0.003822
+Running SSSP 25
+Time for SSSP 25 is 0.011923
+TEPS for SSSP 25 is 1.75845e+08
+Validating SSSP 25
+Validate time for SSSP 25 is 0.003789
+Running SSSP 26
+Time for SSSP 26 is 0.011857
+TEPS for SSSP 26 is 1.76821e+08
+Validating SSSP 26
+Validate time for SSSP 26 is 0.003773
+Running SSSP 27
+Time for SSSP 27 is 0.011909
+TEPS for SSSP 27 is 1.76039e+08
+Validating SSSP 27
+Validate time for SSSP 27 is 0.003865
+Running SSSP 28
+Time for SSSP 28 is 0.032349
+TEPS for SSSP 28 is 6.48093e+07
+Validating SSSP 28
+Validate time for SSSP 28 is 0.004681
+Running SSSP 29
+Time for SSSP 29 is 0.013102
+TEPS for SSSP 29 is 1.60015e+08
+Validating SSSP 29
+Validate time for SSSP 29 is 0.003855
+Running SSSP 30
+Time for SSSP 30 is 0.011962
+TEPS for SSSP 30 is 1.75262e+08
+Validating SSSP 30
+Validate time for SSSP 30 is 0.003846
+Running SSSP 31
+Time for SSSP 31 is 0.012913
+TEPS for SSSP 31 is 1.62358e+08
+Validating SSSP 31
+Validate time for SSSP 31 is 0.003800
+Running SSSP 32
+Time for SSSP 32 is 0.011626
+TEPS for SSSP 32 is 1.80336e+08
+Validating SSSP 32
+Validate time for SSSP 32 is 0.003883
+Running SSSP 33
+Time for SSSP 33 is 0.011074
+TEPS for SSSP 33 is 1.89315e+08
+Validating SSSP 33
+Validate time for SSSP 33 is 0.003812
+Running SSSP 34
+Time for SSSP 34 is 0.011872
+TEPS for SSSP 34 is 1.76594e+08
+Validating SSSP 34
+Validate time for SSSP 34 is 0.003805
+Running SSSP 35
+Time for SSSP 35 is 0.010713
+TEPS for SSSP 35 is 1.95697e+08
+Validating SSSP 35
+Validate time for SSSP 35 is 0.003797
+Running SSSP 36
+Time for SSSP 36 is 0.012151
+TEPS for SSSP 36 is 1.72531e+08
+Validating SSSP 36
+Validate time for SSSP 36 is 0.003764
+Running SSSP 37
+Time for SSSP 37 is 0.011085
+TEPS for SSSP 37 is 1.89129e+08
+Validating SSSP 37
+Validate time for SSSP 37 is 0.003811
+Running SSSP 38
+Time for SSSP 38 is 0.011248
+TEPS for SSSP 38 is 1.86384e+08
+Validating SSSP 38
+Validate time for SSSP 38 is 0.003780
+Running SSSP 39
+Time for SSSP 39 is 0.010708
+TEPS for SSSP 39 is 1.95782e+08
+Validating SSSP 39
+Validate time for SSSP 39 is 0.003788
+Running SSSP 40
+Time for SSSP 40 is 0.011648
+TEPS for SSSP 40 is 1.79985e+08
+Validating SSSP 40
+Validate time for SSSP 40 is 0.003801
+Running SSSP 41
+Time for SSSP 41 is 0.011854
+TEPS for SSSP 41 is 1.76867e+08
+Validating SSSP 41
+Validate time for SSSP 41 is 0.003786
+Running SSSP 42
+Time for SSSP 42 is 0.011205
+TEPS for SSSP 42 is 1.87108e+08
+Validating SSSP 42
+Validate time for SSSP 42 is 0.003773
+Running SSSP 43
+Time for SSSP 43 is 0.011084
+TEPS for SSSP 43 is 1.89144e+08
+Validating SSSP 43
+Validate time for SSSP 43 is 0.003771
+Running SSSP 44
+Time for SSSP 44 is 0.011865
+TEPS for SSSP 44 is 1.76696e+08
+Validating SSSP 44
+Validate time for SSSP 44 is 0.003784
+Running SSSP 45
+Time for SSSP 45 is 0.011723
+TEPS for SSSP 45 is 1.78842e+08
+Validating SSSP 45
+Validate time for SSSP 45 is 0.003775
+Running SSSP 46
+Time for SSSP 46 is 0.010682
+TEPS for SSSP 46 is 1.96272e+08
+Validating SSSP 46
+Validate time for SSSP 46 is 0.003822
+Running SSSP 47
+Time for SSSP 47 is 0.010726
+TEPS for SSSP 47 is 1.95465e+08
+Validating SSSP 47
+Validate time for SSSP 47 is 0.003775
+Running SSSP 48
+Time for SSSP 48 is 0.011094
+TEPS for SSSP 48 is 1.88986e+08
+Validating SSSP 48
+Validate time for SSSP 48 is 0.003803
+Running SSSP 49
+Time for SSSP 49 is 0.011466
+TEPS for SSSP 49 is 1.82853e+08
+Validating SSSP 49
+Validate time for SSSP 49 is 0.003788
+Running SSSP 50
+Time for SSSP 50 is 0.011851
+TEPS for SSSP 50 is 1.76899e+08
+Validating SSSP 50
+Validate time for SSSP 50 is 0.003774
+Running SSSP 51
+Time for SSSP 51 is 0.011819
+TEPS for SSSP 51 is 1.7739e+08
+Validating SSSP 51
+Validate time for SSSP 51 is 0.003833
+Running SSSP 52
+Time for SSSP 52 is 0.011775
+TEPS for SSSP 52 is 1.78044e+08
+Validating SSSP 52
+Validate time for SSSP 52 is 0.003761
+Running SSSP 53
+Time for SSSP 53 is 0.011865
+TEPS for SSSP 53 is 1.767e+08
+Validating SSSP 53
+Validate time for SSSP 53 is 0.003773
+Running SSSP 54
+Time for SSSP 54 is 0.010447
+TEPS for SSSP 54 is 2.00687e+08
+Validating SSSP 54
+Validate time for SSSP 54 is 0.003776
+Running SSSP 55
+Time for SSSP 55 is 0.012209
+TEPS for SSSP 55 is 1.7172e+08
+Validating SSSP 55
+Validate time for SSSP 55 is 0.003784
+Running SSSP 56
+Time for SSSP 56 is 0.011795
+TEPS for SSSP 56 is 1.77747e+08
+Validating SSSP 56
+Validate time for SSSP 56 is 0.003904
+Running SSSP 57
+Time for SSSP 57 is 0.012339
+TEPS for SSSP 57 is 1.6991e+08
+Validating SSSP 57
+Validate time for SSSP 57 is 0.003785
+Running SSSP 58
+Time for SSSP 58 is 0.013280
+TEPS for SSSP 58 is 1.5787e+08
+Validating SSSP 58
+Validate time for SSSP 58 is 0.003749
+Running SSSP 59
+Time for SSSP 59 is 0.011378
+TEPS for SSSP 59 is 1.84267e+08
+Validating SSSP 59
+Validate time for SSSP 59 is 0.003769
+Running SSSP 60
+Time for SSSP 60 is 0.013224
+TEPS for SSSP 60 is 1.58536e+08
+Validating SSSP 60
+Validate time for SSSP 60 is 0.003807
+Running SSSP 61
+Time for SSSP 61 is 0.012266
+TEPS for SSSP 61 is 1.70914e+08
+Validating SSSP 61
+Validate time for SSSP 61 is 0.003799
+Running SSSP 62
+Time for SSSP 62 is 0.011159
+TEPS for SSSP 62 is 1.87883e+08
+Validating SSSP 62
+Validate time for SSSP 62 is 0.003776
+Running SSSP 63
+Time for SSSP 63 is 0.011779
+TEPS for SSSP 63 is 1.7798e+08
+Validating SSSP 63
+Validate time for SSSP 63 is 0.003798
+SCALE:                          17
+edgefactor:                     16
+NBFS:                           64
+graph_generation:               1.18147
+num_mpi_processes:              512
+construction_time:              0.275593
+bfs  min_time:                  0
+bfs  firstquartile_time:        7.66253e-311
+bfs  median_time:               1.38895e-310
+bfs  thirdquartile_time:        1.6977e-310
+bfs  max_time:                  6.92986e-310
+bfs  mean_time:                 1.43983e-310
+bfs  stddev_time:               0
+sssp min_time:                  0.0104104
+sssp firstquartile_time:        0.0111206
+sssp median_time:               0.0116855
+sssp thirdquartile_time:        0.0119966
+sssp max_time:                  0.0323489
+sssp mean_time:                 0.0119568
+sssp stddev_time:               0.00267235
+min_nedge:                      2096512
+firstquartile_nedge:            2096512
+median_nedge:                   2096512
+thirdquartile_nedge:            2096512
+max_nedge:                      2096512
+mean_nedge:                     2096512
+stddev_nedge:                   0
+bfs  min_TEPS:                  inf
+bfs  firstquartile_TEPS:        inf
+bfs  median_TEPS:               inf
+bfs  thirdquartile_TEPS:        inf
+bfs  max_TEPS:                  inf
+bfs  harmonic_mean_TEPS:     !  inf
+bfs  harmonic_stddev_TEPS:      -nan
+sssp min_TEPS:                  6.48093e+07
+sssp firstquartile_TEPS:        1.74759e+08
+sssp median_TEPS:               1.79412e+08
+sssp thirdquartile_TEPS:        1.88524e+08
+sssp max_TEPS:                  2.01386e+08
+sssp harmonic_mean_TEPS:     !  1.75341e+08
+sssp harmonic_stddev_TEPS:      4.9373e+06
+bfs  min_validate:              0
+bfs  firstquartile_validate:    0
+bfs  median_validate:           0
+bfs  thirdquartile_validate:    0
+bfs  max_validate:              6.92986e-310
+bfs  mean_validate:             2.16558e-311
+bfs  stddev_validate:           0
+sssp min_validate:              0.00374928
+sssp firstquartile_validate:    0.00377622
+sssp median_validate:           0.00378866
+sssp thirdquartile_validate:    0.00381708
+sssp max_validate:              0.00468057
+sssp mean_validate:             0.00381844
+sssp stddev_validate:           0.000119843
