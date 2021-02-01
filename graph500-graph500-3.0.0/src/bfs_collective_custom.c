@@ -156,7 +156,6 @@ void run_bfs(int64_t root, int64_t* pred) {
 		
 		for(i=0;i<qc;i++){
 			for(j=rowstarts[q1[i]];j<rowstarts[q1[i]+1];j++){
-//				send_counts[VERTEX_OWNER(COLUMN(j))]++; //fill the send count size;
 				send_counts_2[VERTEX_OWNER(COLUMN(j))]++; //replicate the results
 				send_size++;
 			}
@@ -176,7 +175,6 @@ void run_bfs(int64_t root, int64_t* pred) {
 				visitmsg m = {VERTEX_LOCAL(COLUMN(j)), q1[i], rank};
 				send_buf[(send_counts[owner]+offset)] = m;
 				send_counts[owner]++; //fill the send count size;
-				send_size++;
 			}
       	}
 

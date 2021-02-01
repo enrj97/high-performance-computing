@@ -1,5 +1,20 @@
 #!/bin/bash
 
+srun -p q_student -N 32 --ntasks-per-node=1 -o results/graph500_BFS_32x1_sf17.txt --time=05:00 ./graph500_reference_bfs 17
+srun -p q_student -N 32 --ntasks-per-node=1 -o results/graph500_BFS_32x1_sf20.txt --time=05:00 ./graph500_reference_bfs 20
+srun -p q_student -N 32 --ntasks-per-node=1 -o results/graph500_BFS_32x1_sf23.txt --time=05:00 ./graph500_reference_bfs 23
+srun -p q_student -N 32 --ntasks-per-node=1 -o results/graph500_BFS_32x1_sf26.txt --time=05:00 ./graph500_reference_bfs 26
+
+srun -p q_student -N 1 --ntasks-per-node=32 -o results/graph500_BFS_1x32_sf17.txt --time=05:00 ./graph500_reference_bfs 17
+srun -p q_student -N 1 --ntasks-per-node=32 -o results/graph500_BFS_1x32_sf20.txt --time=05:00 ./graph500_reference_bfs 20
+srun -p q_student -N 1 --ntasks-per-node=32 -o results/graph500_BFS_1x32_sf23.txt --time=05:00 ./graph500_reference_bfs 23
+srun -p q_student -N 1 --ntasks-per-node=32 -o results/graph500_BFS_1x32_sf26.txt --time=05:00 ./graph500_reference_bfs 26
+
+srun -p q_student -N 32 --ntasks-per-node=32 -o results/graph500_BFS_32x32_sf17.txt --time=05:00 ./graph500_reference_bfs 17
+srun -p q_student -N 32 --ntasks-per-node=32 -o results/graph500_BFS_32x32_sf20.txt --time=05:00 ./graph500_reference_bfs 20
+srun -p q_student -N 32 --ntasks-per-node=32 -o results/graph500_BFS_32x32_sf23.txt --time=05:00 ./graph500_reference_bfs 23
+srun -p q_student -N 32 --ntasks-per-node=32 -o results/graph500_BFS_32x32_sf26.txt --time=05:00 ./graph500_reference_bfs 26
+
 srun -p q_student -N 32 --ntasks-per-node=24 -o results/graph500_BFS_32x24_sf17.txt --time=05:00 ./graph500_reference_bfs 17
 srun -p q_student -N 32 --ntasks-per-node=24 -o results/graph500_BFS_32x24_sf20.txt --time=05:00 ./graph500_reference_bfs 20
 srun -p q_student -N 32 --ntasks-per-node=24 -o results/graph500_BFS_32x24_sf23.txt --time=05:00 ./graph500_reference_bfs 23
